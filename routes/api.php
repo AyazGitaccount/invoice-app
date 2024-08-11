@@ -1,13 +1,10 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvoiceController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/{pathMatch}', function () {
-    return view('welcome');
-})->where('pathMatch', ".*");
-
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 Route::get("/get_all_invoices", [InvoiceController::class, "getInvoices"]);
